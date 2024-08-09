@@ -1,38 +1,572 @@
-.App {
-  text-align: center;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+::selection {
+  background-color: transparent;
+  color: #fff;
+  text-shadow: 0 0 10px #dbdbdb;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.heroBanner {
+  position: relative; /* Ensure the pseudo-element is positioned relative to this element */
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: 80vh;
+  background-image: url("./spaceship-orbits-dark-galaxy-glowing-blue-comet-generated-by-ai.jpg");
+  background-size: cover; /* Adjust the background size */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background from repeating */
+}
+
+.heroBanner::before,
+.about::before {
+  content: "";
+  position: absolute; /* Overlay should cover the entire .heroBanner */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Black overlay with opacity */
+  z-index: 1; /* Ensure overlay is on top */
+}
+
+.heroBanner > * {
+  position: relative; /* Ensure content is above the overlay */
+  z-index: 2;
+}
+
+.heroBanner .headline {
+  font-size: 65px;
+  color: #c0c0c0;
+}
+.about {
+  padding: 80px 5%;
+  background-image: url("./space.jpg");
+  background-size: cover; /* Adjust the background size */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background from repeating */
+}
+.aboutMainDiv {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  gap: 80px;
+}
+.aboutContent {
+  display: flex;
+  flex-direction: column;
+
+  width: 50%;
+}
+.aboutContent .headline {
+  font-size: 30px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #c0c0c0;
+}
+.aboutContent .paragraph {
+  color: #c0c0c0;
+}
+.aboutImage {
+  width: 50%;
+}
+.aboutImage img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.about {
+  position: relative; /* Ensure the pseudo-element is positioned relative to this element */
+  padding: 80px 5%;
+  background-image: url("./space.jpg");
+  background-size: cover; /* Adjust the background size */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background from repeating */
+  z-index: 1; /* Set the stacking context */
+}
+
+.about::before {
+  content: "";
+  position: absolute; /* Position the overlay to cover the entire .about section */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.671); /* Black overlay with 50% opacity */
+  z-index: -1; /* Place the overlay behind the content */
+}
+
+.about > * {
+  position: relative; /* Ensure content appears above the overlay */
+  z-index: 2;
+}
+.banenrText {
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.space {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
+.space video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -2;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+.space .video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+  z-index: -1; /* Places the overlay between the video and content */
+}
+
+.space .content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: white;
+  text-align: center;
+  height: 100%;
+}
+.spaceImg {
+  width: 600px;
+  height: auto;
+  box-shadow: 0 0 150px #000000d7;
+}
+.sadNotes {
+  width: 800px;
+  padding-top: 50px;
+  color: #c0c0c0;
+  line-height: 1.8em;
+}
+.headlineSpace {
+  font-size: 28px;
+  color: #c0c0c0;
+  margin-bottom: 50px;
 }
 
-.App-link {
-  color: #61dafb;
+@media (max-width: 800px) {
+  .heroBanner {
+    height: 60vh; /* Adjust height for smaller screens if needed */
+  }
+
+  .heroBanner .headline {
+    font-size: 45px; /* Adjust headline size */
+  }
+
+  .about {
+    /* Adjust padding for smaller screens */
+    flex-direction: column; /* Stack content vertically */
+  }
+
+  .aboutMainDiv {
+    flex-direction: column; /* Stack content vertically */
+    gap: 40px; /* Adjust gap between items */
+  }
+
+  .aboutContent,
+  .aboutImage {
+    width: 100%; /* Full width for responsive layout */
+  }
+
+  .aboutContent .headline {
+    font-size: 24px; /* Adjust headline size */
+  }
+  .sadNotes {
+    width: auto;
+    text-align: start;
+  }
+  .content {
+    justify-content: start;
+    align-items: start;
+  }
+  .banenrText .headline {
+    line-height: 1em;
+  }
+  .header {
+    padding: 0 !important;
+  }
+  nav {
+    padding-top: 50px;
+    padding-left: 5%;
+    padding-right: 5%;
+    align-items: flex-start !important;
+    z-index: 12;
+    /* background: #000; */
+
+    width: 100%;
+    height: 100vh;
+  }
+  .navbar.active-background {
+    background-image: url("./milky.jpg");
+    background-position: 0% 0%;
+    background-size: cover;
+    background-repeat: repeat;
+    animation: rotate-background 20s linear infinite;
+  }
+  @keyframes rotate-background {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 100% 100%;
+    }
+  }
+  .menu-toggle {
+    box-shadow: 0 0 20px #000;
+  }
+}
+/* header css */
+/* Basic Header Styling */
+.header {
+  /* background-image: url("./spaceship_orbits_more_darkened.jpg"); */
+  /* background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;  */
+  padding: 20px 5%;
+  /* position: sticky; */
+  position: fixed;
+  top: 0;
+  z-index: 999;
+
+  background-image: linear-gradient(to bottom, #0000004d 0%, transparent 100%);
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 12;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+li {
+  margin: 0 10px;
+}
+
+.header a {
+  text-decoration: none;
+  color: #ebebeb;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  /* background-color: #555; */
+  /* background: radial-gradient(
+    circle at center,
+    rgba(255, 85, 85, 1) 0%,
+    rgba(139, 69, 19, 0.8) 50%,
+     rgba(255, 255, 85, 0.6) 100%
+      
+  ); */
+
+  transition: background-color 0.3s, transform 0.7s;
+}
+
+.header a:hover {
+  background-color: #777;
+  transform: rotate(360deg);
+}
+
+/* Hamburger Menu Styles */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.menu-icon {
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+  margin: 6px 0;
+  transition: 1s;
+}
+
+.nav-links {
+  display: flex;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+@media (max-width: 800px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+  }
+  nav {
+    transition: all 1s ease;
+  }
+  .nav-links.active {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .menu-icon {
+    background-color: #fff;
+    position: relative;
+  }
+
+  .menu-icon::before,
+  .menu-icon::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    transition: 0.3s;
+  }
+
+  .menu-icon::before {
+    top: -10px;
+  }
+
+  .menu-icon::after {
+    top: 10px;
+  }
+
+  .menu-toggle.active .menu-icon {
+    background: transparent;
+  }
+
+  .menu-toggle.active .menu-icon::before {
+    transform: rotate(-45deg);
+    top: 0;
+  }
+
+  .menu-toggle.active .menu-icon::after {
+    transform: rotate(45deg);
+    top: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .header a {
+    width: 100px;
+    height: 100px;
+  }
+}
+/* Apply general styles for the About Us section */
+.aboutUs {
+  padding: 200px 5%;
+  background-color: #000;
+  position: relative;
+  color: #c0c0c0;
+}
+
+.aboutUs::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Overlay color */
+  z-index: -1;
+}
+
+.aboutUsContent {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.aboutUs .headline {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: #c0c0c0;
+}
+
+.aboutUs .aboutList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.aboutUs .aboutList li {
+  margin-bottom: 40px;
+}
+
+.aboutUs .subHeadline {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #c0c0c0;
+}
+
+.aboutUs .paragraph {
+  font-size: 16px;
+  line-height: 1.8em;
+  text-align: left;
+  color: #c0c0c0;
+}
+/* Apply general styles for the Spaceship section */
+.spaceship {
+  padding: 200px 5%;
+  background-color: #000;
+  position: relative;
+  color: #c0c0c0;
+}
+
+.spaceship::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Overlay color */
+  z-index: -1;
+}
+.spaceInner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.spaceshipContent {
+  position: relative;
+  z-index: 1;
+
+  margin: 0 auto;
+}
+
+.headline {
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: #c0c0c0;
+}
+
+.subHeadline {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #c0c0c0;
+}
+
+.paragraph {
+  font-size: 18px;
+  line-height: 1.8em;
+  text-align: left;
+  color: #c0c0c0;
+  margin-bottom: 40px;
+}
+
+.paragraph:last-of-type {
+  margin-bottom: 0;
+}
+
+#home-link {
+  background-image: url("./earth.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#space-link {
+  background-image: url("./jupiter.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#about-link {
+  background-image: url("./mars.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#stories-link {
+  background-image: url("./uranus.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#mission-link {
+  background-image: url("./mercury.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.rotating-border {
+  position: relative;
+  display: inline-block;
+  padding: 5px; /* Adjust padding as needed */
+  border-radius: 50%; /* Ensures the border is circular */
+}
+
+.rotating-border::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(255, 69, 0, 0.7); /* Dark red-orange flame */
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotate-border 3s linear infinite, wave-border 2s linear infinite;
+}
+
+@keyframes rotate-border {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes wave-border {
+  0% {
+    border-width: 3px;
+    border-radius: 50%;
+    transform: scale(1);
+  }
+  50% {
+    border-width: 3px 5px;
+    border-radius: 50% 50% 50% 50%;
+    transform: scale(1.03);
+  }
+  100% {
+    border-width: 3px;
+    border-radius: 50%;
+    transform: scale(1);
   }
 }
